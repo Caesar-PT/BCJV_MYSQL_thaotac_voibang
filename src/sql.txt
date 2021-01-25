@@ -1,0 +1,21 @@
+create database Manager;
+use Manager;
+create table Customers (customer_number int,
+                        full_name varchar(255),
+                        address varchar(255),
+                        email varchar(255),
+                        phone varchar(10));
+create table Accounts (account_number int primary key,
+                       account_type varchar(255),
+                       date date,
+                       balance varchar(255));
+create table Transactions (tran_number int primary key,
+                           date date,
+                           amounts int,
+                           descriptions varchar(255));
+alter table accounts add customer_number int;
+alter table customers add primary key (customer_number);
+alter table accounts add constraint lk1 foreign key (customer_number) references customers(customer_number);
+alter table transactions add account_number int;
+alter table transactions add constraint lk2 foreign key (account_number) references accounts(account_number);
+
